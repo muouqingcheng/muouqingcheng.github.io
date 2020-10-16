@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>radio-slider</title>
+  <style>
+    input{
+  display: none;
+}
+ul {
+  list-style:none;
+  padding:0;
+  margin:0;
+  width:300px;
+  height:200px;
+  position: relative;
+}
+section {
+  width:300px;
+  height:200px;
+  position: relative;
+}
+section ul li {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity:0;
+  transition:1s;
+}
+img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  
+}
+li label {
+  height:50px;
+  width:40px;
+  line-height:50px;
+  text-align:center;
+  position: absolute;
+  bottom:0;
+  top:0;
+  margin:auto;
+  background-color: rgba(0,0,0,0.5);
+}
+li label:nth-last-child(2) {
+  left:0;
+}
+li label:nth-last-child(1) {
+  right:0;
+}
+input:nth-child(1):checked ~ ul li:nth-child(1),
+input:nth-child(2):checked ~ ul li:nth-child(2),
+input:nth-child(3):checked ~ ul li:nth-child(3),
+input:nth-child(4):checked ~ ul li:nth-child(4),
+input:nth-child(5):checked ~ ul li:nth-child(5){
+  opacity:1;
+  z-index:1000;
+} 
+.indicators label {
+  background-color: red;
+  display: inline-block;
+  height:5px;
+  width:5px;
+  vertical-align:middle;
+  cursor:pointer;
+  margin-left:3px;
+  margin-right:3px;
+  border-radius:10px;
+}
+.indicators-wrap {
+  position: absolute;
+  width:100%;
+  bottom:0;
+  z-index:100000;
+  text-align:center;
+}
+.indicators {
+  border-radius:25px;
+  background-color: #fff;
+  display: inline-block;
+}
+input:nth-child(1):checked ~ .indicators-wrap label:nth-child(1),
+input:nth-child(2):checked ~ .indicators-wrap label:nth-child(2),
+input:nth-child(3):checked ~ .indicators-wrap label:nth-child(3),
+input:nth-child(4):checked ~ .indicators-wrap label:nth-child(4),
+input:nth-child(5):checked ~ .indicators-wrap label:nth-child(5){
+  background-color: blue;
+} 
+  </style>
+</head>
+
+<body>
+  <section>
+    <input type="radio" checked name="s1" id="s1-1">
+    <input type="radio" name="s1" id="s1-2">
+    <input type="radio" name="s1" id="s1-3">
+    <input type="radio" name="s1" id="s1-4">
+    <input type="radio" name="s1" id="s1-5">
+    <ul>
+      <li>
+        <img src="https://tse4-mm.cn.bing.net/th/id/OIP.s5uukF_RJgycxVqcXnsf_QHaEK?w=300&h=180&c=7&o=5&pid=1.7" alt="">
+        <label for="s1-5">prev</label>
+        <label for="s1-2">next</label>
+      </li>
+      <li>
+        <img src="https://tse2-mm.cn.bing.net/th/id/OIP.9KuR2nOfmHEN3ZbjHN-H9QHaLZ?w=125&h=193&c=7&o=5&pid=1.7" alt="">
+        <label for="s1-1">prev</label>
+        <label for="s1-3">next</label>
+      </li>
+      <li>
+        <img src="https://tse4-mm.cn.bing.net/th/id/OIP.oQfVNgOtQRGkRPnFpeAhwwHaJQ?w=152&h=190&c=7&o=5&pid=1.7" alt="">
+        <label for="s1-2">prev</label>
+        <label for="s1-4">next</label>
+      </li>
+      <li>
+        <img src="https://tse3-mm.cn.bing.net/th/id/OIP.7X4zlfGXdedw9IHNuiXrPAHaEo?w=290&h=181&c=7&o=5&pid=1.7" alt="">
+        <label for="s1-3">prev</label>
+        <label for="s1-5">next</label>
+      </li>
+      <li>
+        <img src="https://tse3-mm.cn.bing.net/th/id/OIP.jQAAo5yyCBlrREluxqgUsgHaE7?w=246&h=180&c=7&o=5&pid=1.7" alt="">
+        <label for="s1-4">prev</label>
+        <label for="s1-1">next</label>
+      </li>
+    </ul>
+    <div class="indicators-wrap">
+      <div class="indicators">
+        <label for="s1-1"></label>
+        <label for="s1-2"></label>
+        <label for="s1-3"></label>
+        <label for="s1-4"></label>
+        <label for="s1-5"></label>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
