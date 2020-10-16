@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>9-grid</title>
+</head>
+
+<body>
+  <h2>行内元素</h2>
+  <style>
+    body{
+  padding:0;
+  margin:0;
+}
+.aa{
+  width:170px;
+  height:170px;
+  font-size: 0;
+}
+.aa span{
+  box-sizing:border-box;
+  font-size:16px;
+  display: inline-block;
+  width:33.33%;
+  height:33.33%;
+  text-align:center;
+  border:5px solid blue;
+  margin-top: -5px;
+  margin-left: -5px;
+  position: relative;
+}
+.aa em {
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+}
+span:hover {
+  border:5px solid red;
+  z-index:1000;
+}
+  </style>
+  <div class="aa">
+    <span><em></em>1</span>
+    <span><em></em>2</span>
+    <span><em></em>3</span>
+    <span><em></em>4</span>
+    <span><em></em>5</span>
+    <span><em></em>6</span>
+    <span><em></em>7</span>
+    <span><em></em>8</span>
+    <span><em></em>9</span>
+  </div>
+  <br>
+  <hr>
+  <h2>定位</h2>
+  <style>
+section {
+  width:170px;
+  height:170px;
+  position:relative;
+}
+section div {
+  width:33.33%;
+  height:33.33%;
+  position:absolute;
+  box-sizing:border-box;
+  border:5px solid pink;
+  text-align:center;
+}
+section em {
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+}
+.a1 {
+  top:0;
+  left:0;
+}
+.a2 {
+  top:0;
+  left:calc(33.33% - 5px);
+}
+.a3 {
+  top:0;
+  left:calc(66.66% - 10px);
+}
+.a4 {
+  top:calc(33.33% - 5px);
+  left:0;
+}
+.a5 {
+  top:calc(33.33% - 5px);
+  left:calc(33.33% - 5px);
+}
+.a6 {
+  top:calc(33.33% - 5px);
+  left:calc(66.66% - 10px);
+}
+.a7 {
+  bottom:10px;
+  left:0;
+}
+.a8 {
+  bottom:10px;
+  left:calc(33.33% - 5px);
+}
+.a9 {
+  bottom:10px;
+  left:calc(66.66% - 10px);
+}
+section div:hover {
+  border:5px solid blueviolet;
+  z-index:1000;
+}
+  </style>
+  <section>
+    <div class="a1"><em></em>1</div>
+    <div class="a2"><em></em>2</div>
+    <div class="a3"><em></em>3</div>
+    <div class="a4"><em></em>4</div>
+    <div class="a5"><em></em>5</div>
+    <div class="a6"><em></em>6</div>
+    <div class="a7"><em></em>7</div>
+    <div class="a8"><em></em>8</div>
+    <div class="a9"><em></em>9</div>
+  </section>
+  <br>
+  <hr>
+  <h2>表格</h2>
+  <style>
+    table {
+  width:170px;
+  height:170px;
+  border-collapse:collapse;
+  text-align:center;
+}
+td {
+  height:33.33%;
+  width:33.33%;
+  border:5px solid yellow;
+  position: relative;
+}
+tr span {
+  position: absolute;
+  top:-5px;
+  left:-5px;
+  bottom:-5px;
+  right:-5px;
+}
+td:hover span {
+  border:5px solid grey;
+  z-index:1000;
+}
+  </style>
+  <table>
+    <tbody>
+      <tr>
+        <td>1<span></span></td>
+        <td>2<span></span></td>
+        <td>3<span></span></td>
+      </tr>
+      <tr>
+        <td>4<span></span></td>
+        <td>5<span></span></td>
+        <td>6<span></span></td>
+      </tr>
+      <tr>
+        <td>7<span></span></td>
+        <td>8<span></span></td>
+        <td>9<span></span></td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+</body>
+
+</html>

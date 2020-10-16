@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>css-menu</title>
+  <style>
+    ul,li {
+      border: 1px solid red;
+    }
+    ul {
+  list-style:none;
+  padding:0;
+  display:none;
+  position: absolute;
+}
+.menu {
+  display:block;
+  position: relative;
+}
+.menu > li {
+  display: inline-block;
+  vertical-align: top;
+}
+.menu li {
+   position: relative;
+}
+ul ul ul {
+  left: 100%;
+  top:0;
+}
+li:hover > ul {
+  display: block;
+}
+  </style>
+</head>
+
+<body>
+  <ul class="menu">
+    <li>a
+      <ul>
+        <li>a111111
+          <ul>
+            <li>a11</li>
+            <li>a11</li>
+            <li>a11</li>
+          </ul>
+        </li>
+        <li>a2
+          <ul>
+            <li>a22</li>
+            <li>a22</li>
+            <li>a22</li>
+          </ul>
+        </li>
+        <li>a3
+          <ul>
+            <li>a33</li>
+            <li>a33</li>
+            <li>a33</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>b
+      <ul>
+        <li>b1</li>
+        <li>b2</li>
+        <li>b3</li>
+      </ul>
+    </li>
+    <li>ccccccc
+      <ul>
+        <li>c1</li>
+        <li>c2</li>
+        <li>c3</li>
+      </ul>
+    </li>
+  </ul>
+</body>
+
+</html>
