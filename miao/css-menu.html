@@ -6,75 +6,88 @@
   <meta name="viewport" content="width=device-width">
   <title>css-menu</title>
   <style>
-    ul,li {
-      border: 1px solid red;
-    }
     ul {
-  list-style:none;
-  padding:0;
-  display:none;
-  position: absolute;
-}
-.menu {
-  display:block;
-  position: relative;
-}
-.menu > li {
-  display: inline-block;
-  vertical-align: top;
-}
-.menu li {
-   position: relative;
-}
-ul ul ul {
-  left: 100%;
-  top:0;
-}
-li:hover > ul {
-  display: block;
-}
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:none;
+      position: absolute;
+      background-color: #3c3c3c;
+      color:white;
+      font-size:0;
+    }
+    li {
+      font-size:16px;
+      text-align:center;
+      height:30px;
+      width:120px;
+      line-height:30px;
+      border:1px solid red;
+    }
+    .menu {
+      display:block;
+      position: relative;
+    }
+    .menu > li {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .menu li {
+      position: relative;
+    }
+    ul ul ul {
+      left: 100%;
+      top:0;
+    }
+    li:hover > ul {
+      display: block;
+      white-space:nowrap;
+    }
+    li:hover {
+      background-color: #505050;
+    }
   </style>
 </head>
 
 <body>
   <ul class="menu">
-    <li>a
+    <li>主武器
       <ul>
-        <li>a111111
+        <li>步枪
           <ul>
-            <li>a11</li>
-            <li>a11</li>
-            <li>a11</li>
+            <li>齐变步狙</li>
+            <li>原子裂变</li>
+            <li>scar-棘龙</li>
           </ul>
         </li>
-        <li>a2
+        <li>狙击枪
           <ul>
-            <li>a22</li>
-            <li>a22</li>
-            <li>a22</li>
+            <li>M107-混沌</li>
+            <li>圣光裁决-骤晴</li>
+            <li>MSR-电离碰撞</li>
           </ul>
         </li>
-        <li>a3
+        <li>副武器
           <ul>
-            <li>a33</li>
-            <li>a33</li>
-            <li>a33</li>
+            <li>沙漠之鹰</li>
+            <li>黄金之翼</li>
+            <li>弓箭</li>
           </ul>
         </li>
       </ul>
     </li>
-    <li>b
+    <li>投掷武器
       <ul>
-        <li>b1</li>
-        <li>b2</li>
-        <li>b3</li>
+        <li>高爆手雷</li>
+        <li>烟雾弹</li>
+        <li>闪光弹</li>
       </ul>
     </li>
-    <li>ccccccc
+    <li>近身武器
       <ul>
-        <li>c1</li>
-        <li>c2</li>
-        <li>c3</li>
+        <li>审判之刃</li>
+        <li>大剑</li>
+        <li>匕首</li>
       </ul>
     </li>
   </ul>
