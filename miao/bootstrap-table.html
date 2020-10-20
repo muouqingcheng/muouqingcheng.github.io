@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>bootstrap-table</title>
+  <style>
+    .table {
+      border-collapse:collapse;
+      width:100%;
+      text-align:left;
+    }
+    .table th,.table td{
+      padding:12px;
+    }
+    .table thead tr {
+      border-bottom:2px solid #dee2e6;
+    }
+    .table tbody tr {
+      border-top: 1px solid #dee2e6;
+    }
+
+
+    .table-dark {
+      background-color: #343a40;
+      color: white;
+    }
+    .table-dark thead tr {
+      border-bottom:2px solid #454d55;
+    }
+    .table-dark tbody tr {
+      border-top: 1px solid #454d55;
+    }
+
+
+    .table-hover tbody tr:hover {
+      background-color: #ececec;
+    }
+    .table-hover.table-dark tbody tr:hover{
+      background-color: #43494e;
+    }
+
+
+    .table-sm th,.table-sm td{
+      padding:5px;
+    }
+
+
+    .table-striped tbody tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+    .table-striped.table-hover tbody tr:hover {
+      background-color: #ececec;
+    }
+    .table-striped.table-dark tbody tr:nth-child(odd){
+      background-color: #3e444a;
+    }
+    .table-striped.table-hover.table-dark tbody tr:hover {
+      background-color: #43494e;
+    }
+
+
+    .table-bordered {
+      border:1px solid #dee2e6;
+    }
+    .table-bordered th,.table-bordered td {
+      border:1px solid #dee2e6;
+    }
+    .table-bordered.table-dark th,.table-bordered.table-dark td {
+      border:1px solid #454d55;
+    }
+
+
+    .table-borderless th,.table-borderless td{
+      border:none;
+    }
+    .table-borderless thead tr,.table-borderless tbody tr{
+      border:none;
+    }
+  </style>
+</head>
+<body>
+  <table class="table table-dark table-hover table-sm table-striped table-bordered table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
