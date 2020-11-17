@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>实现一张图片公转但不自转</title>
+  <style>
+    * {
+      background-color: rgba(0,0,0,0.1);
+      box-shadow: 0 0 1px red;
+      box-sizing:border-box;
+    }
+    div {
+      margin-top:170px;
+      margin-bottom:300px;
+    }
+
+    @keyframes means-one-div {
+      to {
+        transform:rotate(360deg);
+      }
+    }
+    @keyframes means-one-span {
+      to {
+        transform:rotate(360deg);
+      }
+    }
+    div.a1 {
+      height:21px;
+      width:300px;
+      margin:auto;
+      animation:means-one-div 5s linear infinite;
+    }
+    .a1 span {
+      display:inline-block;
+      animation:means-one-span 5s linear infinite reverse;
+    }
+
+    @keyframes means-two-span {
+      from {
+      transform:rotate(0deg) translate(150px) rotate(-0deg); 
+      }
+      to {
+        transform:rotate(360deg) translate(150px) rotate(-360deg); 
+      }
+    }
+    div.means-two {
+      text-align:center;
+    }
+    .means-two span {
+      display:inline-block;
+      animation:means-two-span 5s linear infinite;
+    }
+
+    @keyframes means-three-sin {
+      from {
+        margin-left:0px;
+      }
+      to {
+        margin-left:300px;
+      }
+    }
+    @keyframes means-three-cos {
+      from {
+        margin-top:0;
+      }
+      to {
+        margin-top:300px;
+      }
+    }
+    div.means-three {
+      height:321px;
+      width:321px;
+      margin:auto;
+    }
+    .means-three span {
+      display:inline-block;
+      xtransform:translate(-150px);
+      animation:means-three-sin 1s cubic-bezier(.365,0,.635,1) infinite alternate, means-three-cos 1s 0.5s cubic-bezier(.365,0,.635,1) infinite alternate;
+    }
+  </style>
+</head>
+
+<body>
+  <section>
+    <div class="means-one">
+      <div class="a1">
+        <span>正</span>
+      </div>
+    </div>
+    <div class="means-two">
+      <span>正</span>
+    </div>
+    <div class="means-three">
+      <span>正</span>
+    </div>
+  </section>
+</body>
+
+</html>

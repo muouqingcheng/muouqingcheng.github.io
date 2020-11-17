@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>css-3d</title>
+  <style>
+    @keyframes rotate3d {
+      form {
+        transform:rotatex(0deg) rotatey(0deg);
+      }
+      to {
+        transform:rotatex(360deg) rotatey(3600deg);
+      }
+    }
+    section {
+      width:200px;
+      height:200px;
+      margin:auto;
+      margin-top:150px;
+      position:relative;
+      transform-style:preserve-3d;
+      xtransform:rotatex(45deg) rotatey(45deg);
+      animation:rotate3d 13s linear infinite;
+    }
+    div {
+      box-shadow:0 0 0 0px rgba(0,0,0,0.1);
+      transition:.5s;
+      width:100px;
+      height:100px;
+      position: absolute;
+      left:25%;
+      top:25%;
+      font-size:70px;
+      line-height:100px;
+      text-align:center;
+    }
+    div.a1 {
+      transform:rotatey(0deg) translatez(50px);
+    }
+    div.a2 {
+      transform:rotatey(180deg) translatez(50px);
+    }
+    div.a3 {
+      transform:rotatey(90deg) translatez(50px);
+    }
+    div.a4 {
+      transform:rotatey(-90deg) translatez(50px);
+    }
+    div.a5 {
+      transform:rotatex(90deg) translatez(50px);
+    }
+    div.a6 {
+      transform:rotatex(-90deg) translatez(50px);
+    }
+    section:hover div {
+      box-shadow:0 0 0 50px rgba(0,0,0,0.1);
+    }
+    section:hover {
+      animation-play-state:paused;
+    }
+    table {
+      width:100%;
+      height:100%;
+      border-collapse:collapse;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <div class="a1">
+      <table>
+        <tr>
+          <td bgcolor="#00f"></td>
+          <td bgcolor="#20f"></td>
+          <td bgcolor="#40f"></td>
+          <td bgcolor="#60f"></td>
+          <td bgcolor="#80f"></td>
+          <td bgcolor="#a0f"></td>
+          <td bgcolor="#c0f"></td>
+          <td bgcolor="#e0f"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#00c"></td>
+          <td bgcolor="#20c"></td>
+          <td bgcolor="#40c"></td>
+          <td bgcolor="#60c"></td>
+          <td bgcolor="#80c"></td>
+          <td bgcolor="#a0c"></td>
+          <td bgcolor="#c0c"></td>
+          <td bgcolor="#e0c"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#00a"></td>
+          <td bgcolor="#20a"></td>
+          <td bgcolor="#40a"></td>
+          <td bgcolor="#60a"></td>
+          <td bgcolor="#80a"></td>
+          <td bgcolor="#a0a"></td>
+          <td bgcolor="#c0a"></td>
+          <td bgcolor="#e0a"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#008"></td>
+          <td bgcolor="#208"></td>
+          <td bgcolor="#408"></td>
+          <td bgcolor="#608"></td>
+          <td bgcolor="#808"></td>
+          <td bgcolor="#a08"></td>
+          <td bgcolor="#c08"></td>
+          <td bgcolor="#e08"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#006"></td>
+          <td bgcolor="#206"></td>
+          <td bgcolor="#406"></td>
+          <td bgcolor="#606"></td>
+          <td bgcolor="#806"></td>
+          <td bgcolor="#a06"></td>
+          <td bgcolor="#c06"></td>
+          <td bgcolor="#e06"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#004"></td>
+          <td bgcolor="#204"></td>
+          <td bgcolor="#404"></td>
+          <td bgcolor="#604"></td>
+          <td bgcolor="#804"></td>
+          <td bgcolor="#a04"></td>
+          <td bgcolor="#c04"></td>
+          <td bgcolor="#e04"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#002"></td>
+          <td bgcolor="#202"></td>
+          <td bgcolor="#402"></td>
+          <td bgcolor="#602"></td>
+          <td bgcolor="#802"></td>
+          <td bgcolor="#a02"></td>
+          <td bgcolor="#c02"></td>
+          <td bgcolor="#e02"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#000"></td>
+          <td bgcolor="#200"></td>
+          <td bgcolor="#400"></td>
+          <td bgcolor="#600"></td>
+          <td bgcolor="#800"></td>
+          <td bgcolor="#a00"></td>
+          <td bgcolor="#c00"></td>
+          <td bgcolor="#e00"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="a2">
+      <table>
+        <tr>
+          <td bgcolor="#fff"></td>
+          <td bgcolor="#cff"></td>
+          <td bgcolor="#aff"></td>
+          <td bgcolor="#8ff"></td>
+          <td bgcolor="#6ff"></td>
+          <td bgcolor="#4ff"></td>
+          <td bgcolor="#2ff"></td>
+          <td bgcolor="#0ff"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#ffc"></td>
+          <td bgcolor="#cfc"></td>
+          <td bgcolor="#afc"></td>
+          <td bgcolor="#8fc"></td>
+          <td bgcolor="#6fc"></td>
+          <td bgcolor="#4fc"></td>
+          <td bgcolor="#2fc"></td>
+          <td bgcolor="#0fc"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#ffa"></td>
+          <td bgcolor="#cfa"></td>
+          <td bgcolor="#afa"></td>
+          <td bgcolor="#8fa"></td>
+          <td bgcolor="#6fa"></td>
+          <td bgcolor="#4fa"></td>
+          <td bgcolor="#2fa"></td>
+          <td bgcolor="#0fa"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#ff8"></td>
+          <td bgcolor="#cf8"></td>
+          <td bgcolor="#af8"></td>
+          <td bgcolor="#8f8"></td>
+          <td bgcolor="#6f8"></td>
+          <td bgcolor="#4f8"></td>
+          <td bgcolor="#2f8"></td>
+          <td bgcolor="#0f8"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#ff6"></td>
+          <td bgcolor="#cf6"></td>
+          <td bgcolor="#af6"></td>
+          <td bgcolor="#8f6"></td>
+          <td bgcolor="#6f6"></td>
+          <td bgcolor="#4f6"></td>
+          <td bgcolor="#2f6"></td>
+          <td bgcolor="#0f6"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#ff4"></td>
+          <td bgcolor="#cf4"></td>
+          <td bgcolor="#af4"></td>
+          <td bgcolor="#8f4"></td>
+          <td bgcolor="#6f4"></td>
+          <td bgcolor="#4f4"></td>
+          <td bgcolor="#2f4"></td>
+          <td bgcolor="#0f4"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#ff2"></td>
+          <td bgcolor="#cf2"></td>
+          <td bgcolor="#af2"></td>
+          <td bgcolor="#8f2"></td>
+          <td bgcolor="#6f2"></td>
+          <td bgcolor="#4f2"></td>
+          <td bgcolor="#2f2"></td>
+          <td bgcolor="#0f2"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#ff0"></td>
+          <td bgcolor="#cf0"></td>
+          <td bgcolor="#af0"></td>
+          <td bgcolor="#8f0"></td>
+          <td bgcolor="#6f0"></td>
+          <td bgcolor="#4f0"></td>
+          <td bgcolor="#2f0"></td>
+          <td bgcolor="#0f0"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="a3">
+      <table>
+        <tr>
+          <td bgcolor="#f0f"></td>
+          <td bgcolor="#f2f"></td>
+          <td bgcolor="#f4f"></td>
+          <td bgcolor="#f6f"></td>
+          <td bgcolor="#f8f"></td>
+          <td bgcolor="#faf"></td>
+          <td bgcolor="#fcf"></td>
+          <td bgcolor="#fef"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#f0a"></td>
+          <td bgcolor="#f2a"></td>
+          <td bgcolor="#f4a"></td>
+          <td bgcolor="#f6a"></td>
+          <td bgcolor="#f8a"></td>
+          <td bgcolor="#faa"></td>
+          <td bgcolor="#fca"></td>
+          <td bgcolor="#fea"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#f08"></td>
+          <td bgcolor="#f28"></td>
+          <td bgcolor="#f48"></td>
+          <td bgcolor="#f68"></td>
+          <td bgcolor="#f88"></td>
+          <td bgcolor="#fa8"></td>
+          <td bgcolor="#fc8"></td>
+          <td bgcolor="#fe8"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#f06"></td>
+          <td bgcolor="#f26"></td>
+          <td bgcolor="#f46"></td>
+          <td bgcolor="#f66"></td>
+          <td bgcolor="#f86"></td>
+          <td bgcolor="#fa6"></td>
+          <td bgcolor="#fc6"></td>
+          <td bgcolor="#fe6"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#f04"></td>
+          <td bgcolor="#f24"></td>
+          <td bgcolor="#f44"></td>
+          <td bgcolor="#f64"></td>
+          <td bgcolor="#f84"></td>
+          <td bgcolor="#fa4"></td>
+          <td bgcolor="#fc4"></td>
+          <td bgcolor="#fe4"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#f02"></td>
+          <td bgcolor="#f22"></td>
+          <td bgcolor="#f42"></td>
+          <td bgcolor="#f62"></td>
+          <td bgcolor="#f82"></td>
+          <td bgcolor="#fa2"></td>
+          <td bgcolor="#fc2"></td>
+          <td bgcolor="#fe2"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#f00"></td>
+          <td bgcolor="#f20"></td>
+          <td bgcolor="#f40"></td>
+          <td bgcolor="#f60"></td>
+          <td bgcolor="#f80"></td>
+          <td bgcolor="#fa0"></td>
+          <td bgcolor="#fc0"></td>
+          <td bgcolor="#fe0"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="a4">
+      <table>
+        <tr>
+          <td bgcolor="#0ff"></td>
+          <td bgcolor="#0cf"></td>
+          <td bgcolor="#0af"></td>
+          <td bgcolor="#08f"></td>
+          <td bgcolor="#06f"></td>
+          <td bgcolor="#04f"></td>
+          <td bgcolor="#02f"></td>
+          <td bgcolor="#00f"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0fc"></td>
+          <td bgcolor="#0cc"></td>
+          <td bgcolor="#0ac"></td>
+          <td bgcolor="#08c"></td>
+          <td bgcolor="#06c"></td>
+          <td bgcolor="#04c"></td>
+          <td bgcolor="#02c"></td>
+          <td bgcolor="#00c"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0fa"></td>
+          <td bgcolor="#0ca"></td>
+          <td bgcolor="#0aa"></td>
+          <td bgcolor="#08a"></td>
+          <td bgcolor="#06a"></td>
+          <td bgcolor="#04a"></td>
+          <td bgcolor="#02a"></td>
+          <td bgcolor="#00a"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0f8"></td>
+          <td bgcolor="#0c8"></td>
+          <td bgcolor="#0a8"></td>
+          <td bgcolor="#088"></td>
+          <td bgcolor="#068"></td>
+          <td bgcolor="#048"></td>
+          <td bgcolor="#028"></td>
+          <td bgcolor="#008"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0f6"></td>
+          <td bgcolor="#0c6"></td>
+          <td bgcolor="#0a6"></td>
+          <td bgcolor="#086"></td>
+          <td bgcolor="#066"></td>
+          <td bgcolor="#046"></td>
+          <td bgcolor="#026"></td>
+          <td bgcolor="#006"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0f4"></td>
+          <td bgcolor="#0c4"></td>
+          <td bgcolor="#0a4"></td>
+          <td bgcolor="#084"></td>
+          <td bgcolor="#064"></td>
+          <td bgcolor="#044"></td>
+          <td bgcolor="#024"></td>
+          <td bgcolor="#004"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0f2"></td>
+          <td bgcolor="#0c2"></td>
+          <td bgcolor="#0a2"></td>
+          <td bgcolor="#082"></td>
+          <td bgcolor="#062"></td>
+          <td bgcolor="#042"></td>
+          <td bgcolor="#022"></td>
+          <td bgcolor="#002"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0f0"></td>
+          <td bgcolor="#0c0"></td>
+          <td bgcolor="#0a0"></td>
+          <td bgcolor="#080"></td>
+          <td bgcolor="#060"></td>
+          <td bgcolor="#040"></td>
+          <td bgcolor="#020"></td>
+          <td bgcolor="#000"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="a5">
+      <table>
+        <tr>
+          <td bgcolor="#0ff"></td>
+          <td bgcolor="#2ff"></td>
+          <td bgcolor="#4ff"></td>
+          <td bgcolor="#6ff"></td>
+          <td bgcolor="#8ff"></td>
+          <td bgcolor="#aff"></td>
+          <td bgcolor="#cff"></td>
+          <td bgcolor="#eff"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0cf"></td>
+          <td bgcolor="#2cf"></td>
+          <td bgcolor="#4cf"></td>
+          <td bgcolor="#6cf"></td>
+          <td bgcolor="#8cf"></td>
+          <td bgcolor="#acf"></td>
+          <td bgcolor="#ccf"></td>
+          <td bgcolor="#ecf"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0af"></td>
+          <td bgcolor="#2af"></td>
+          <td bgcolor="#4af"></td>
+          <td bgcolor="#6af"></td>
+          <td bgcolor="#8af"></td>
+          <td bgcolor="#aaf"></td>
+          <td bgcolor="#caf"></td>
+          <td bgcolor="#eaf"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#08f"></td>
+          <td bgcolor="#28f"></td>
+          <td bgcolor="#48f"></td>
+          <td bgcolor="#68f"></td>
+          <td bgcolor="#88f"></td>
+          <td bgcolor="#a8f"></td>
+          <td bgcolor="#c8f"></td>
+          <td bgcolor="#e8f"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#06f"></td>
+          <td bgcolor="#26f"></td>
+          <td bgcolor="#46f"></td>
+          <td bgcolor="#66f"></td>
+          <td bgcolor="#86f"></td>
+          <td bgcolor="#a6f"></td>
+          <td bgcolor="#c6f"></td>
+          <td bgcolor="#e6f"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#04f"></td>
+          <td bgcolor="#24f"></td>
+          <td bgcolor="#44f"></td>
+          <td bgcolor="#64f"></td>
+          <td bgcolor="#84f"></td>
+          <td bgcolor="#a4f"></td>
+          <td bgcolor="#c4f"></td>
+          <td bgcolor="#e4f"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#02f"></td>
+          <td bgcolor="#22f"></td>
+          <td bgcolor="#42f"></td>
+          <td bgcolor="#62f"></td>
+          <td bgcolor="#82f"></td>
+          <td bgcolor="#a2f"></td>
+          <td bgcolor="#c2f"></td>
+          <td bgcolor="#e2f"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#00f"></td>
+          <td bgcolor="#20f"></td>
+          <td bgcolor="#40f"></td>
+          <td bgcolor="#60f"></td>
+          <td bgcolor="#80f"></td>
+          <td bgcolor="#a0f"></td>
+          <td bgcolor="#c0f"></td>
+          <td bgcolor="#e0f"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="a6">
+      <table>
+        <tr>
+          <td bgcolor="#000"></td>
+          <td bgcolor="#200"></td>
+          <td bgcolor="#400"></td>
+          <td bgcolor="#600"></td>
+          <td bgcolor="#800"></td>
+          <td bgcolor="#a00"></td>
+          <td bgcolor="#c00"></td>
+          <td bgcolor="#e00"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#020"></td>
+          <td bgcolor="#220"></td>
+          <td bgcolor="#420"></td>
+          <td bgcolor="#620"></td>
+          <td bgcolor="#820"></td>
+          <td bgcolor="#a20"></td>
+          <td bgcolor="#c20"></td>
+          <td bgcolor="#e20"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#040"></td>
+          <td bgcolor="#240"></td>
+          <td bgcolor="#440"></td>
+          <td bgcolor="#640"></td>
+          <td bgcolor="#840"></td>
+          <td bgcolor="#a40"></td>
+          <td bgcolor="#c40"></td>
+          <td bgcolor="#e40"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#060"></td>
+          <td bgcolor="#260"></td>
+          <td bgcolor="#460"></td>
+          <td bgcolor="#660"></td>
+          <td bgcolor="#860"></td>
+          <td bgcolor="#a60"></td>
+          <td bgcolor="#c60"></td>
+          <td bgcolor="#e60"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#080"></td>
+          <td bgcolor="#280"></td>
+          <td bgcolor="#480"></td>
+          <td bgcolor="#680"></td>
+          <td bgcolor="#880"></td>
+          <td bgcolor="#a80"></td>
+          <td bgcolor="#c80"></td>
+          <td bgcolor="#e80"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0a0"></td>
+          <td bgcolor="#2a0"></td>
+          <td bgcolor="#4a0"></td>
+          <td bgcolor="#6a0"></td>
+          <td bgcolor="#8a0"></td>
+          <td bgcolor="#aa0"></td>
+          <td bgcolor="#ca0"></td>
+          <td bgcolor="#ea0"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0c0"></td>
+          <td bgcolor="#2c0"></td>
+          <td bgcolor="#4c0"></td>
+          <td bgcolor="#6c0"></td>
+          <td bgcolor="#8c0"></td>
+          <td bgcolor="#ac0"></td>
+          <td bgcolor="#cc0"></td>
+          <td bgcolor="#ec0"></td>
+        </tr>
+        <tr>
+          <td bgcolor="#0e0"></td>
+          <td bgcolor="#2e0"></td>
+          <td bgcolor="#4e0"></td>
+          <td bgcolor="#6e0"></td>
+          <td bgcolor="#8e0"></td>
+          <td bgcolor="#ae0"></td>
+          <td bgcolor="#ce0"></td>
+          <td bgcolor="#ee0"></td>
+        </tr>
+      </table>
+    </div>
+  </section>
+</body>
+
+</html>
