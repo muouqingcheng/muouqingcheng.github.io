@@ -72,7 +72,7 @@ var muouqingcheng = function () {
     if (typeof(predicate) == 'function') {
       pre = predicate (arr[i])
     } else if (typeof(predicate) == 'object') {
-      pre = function {
+      pre = function () {
         arr[i] === predicate
       }
     } else if (typeof(predicate) == 'object')
@@ -98,6 +98,85 @@ var muouqingcheng = function () {
     return res
   }
 
+  function flattenDeep (arr) {
+    var res = []
+    function fD (arr) {
+      for (var i = 0; i < arr.length; i++) {
+        if (typeof(arr[i]) == 'object') {
+          fD (arr[i])
+        } else {
+          res.push(arr[i])
+        }
+      }
+    }
+    fD (arr)
+    return res
+  }
+
+  function flattenDepth (arr, depth = 1) {
+    var res = []
+    var dep = depth
+    function fD (arr, d = 1) {
+      d--
+      for (var i = 0; i < arr.length; i++) {
+        if (typeof(arr[i]) == 'object' && d !== -1) {
+          fD (arr[i], d)
+        } else {
+          res.push(arr[i])
+        }
+      }
+    }
+    fD (arr, dep)
+    return res
+  }
+
+  function fromPairs (pairs) {
+    var res = {}
+    for (var i = 0; i < pairs.length; i++) {
+      res[pairs[i][0]] = pairs[i][1]
+    }
+    return res
+  }
+
+  function head (arr) {
+    return arr[0]
+  }
+
+  function indexOf (arr, value, fromIndex = 0) {
+    if (fromIndex < 0) {
+      fromIndex = arr.length + fromIndex
+    }
+    for (var i = fromIndex; i < arr.length; i++) {
+      if (arr[i] === value) {
+        return i
+      }
+    }
+    return -1
+  }
+
+  function initial (arr) {
+    arr.pop(arr.length - 1)
+    return arr
+  }
+
+  function reverse (arr) {
+    for (var i = 0, j = arr.length - 1; j > i; i++, j--) {
+      var a = arr[i]
+      arr[i] = arr[j]
+      arr[j] = a
+    }
+    return arr
+  }
+
+  function sortedIndex (arr, value) {
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] > value) {
+        return i
+      }
+    }
+  }
+
+
 
 
   return {
@@ -110,5 +189,15 @@ var muouqingcheng = function () {
     dropRight,
     fill,
     identity,
+    flatten,
+    flattenDeep,
+    flattenDepth,
+    fromPairs,
+    head,
+    indexOf,
+    initial,
+    reverse,
+    sortedIndex,
+    
   }
 }()
