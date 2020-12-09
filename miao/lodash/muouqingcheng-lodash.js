@@ -13,7 +13,7 @@ var muouqingcheng = function () {
 
   function compact (ary) {
     var result = []
-    for (var i = 0; i < ary.lenght; i++) {
+    for (var i = 0; i < ary.length; i++) {
       if (ary[i]) {
         result.push(ary[i])
       }
@@ -24,7 +24,7 @@ var muouqingcheng = function () {
   function join (arr, separator = ',') {
     var res = ""
     for (var i = 0; i < arr.length - 1; i++) {
-      res += arr[i] + separator
+      res = res + arr[i] + separator
     }
     return res + arr [arr.length - 1]
   }
@@ -57,7 +57,7 @@ var muouqingcheng = function () {
     return arr
   }
 
-  function fill (arr, value, start = 0, end = array.length) {
+  function fill (arr, value, start = 0, end = arr.length) {
     for (var i = start; i < end; i++) {
       arr[i] = value
     }
@@ -69,12 +69,33 @@ var muouqingcheng = function () {
   }
 
   function findIndex (arr, predicate = identity, fromIndex = 0) {
+    if (typeof(predicate) == 'function') {
+      pre = predicate (arr[i])
+    } else if (typeof(predicate) == 'object') {
+      pre = function {
+        arr[i] === predicate
+      }
+    } else if (typeof(predicate) == 'object')
     for (var i = fromIndex; i < arr.length; i++) {
-      if (predicate (arr[i])) {
+      if (pre) {
         return i
       }
     }
     return -1
+  }
+
+  function flatten (arr) {
+    var res = []
+    for (var i = 0; i < arr.length; i++) {
+      if (typeof(arr[i]) == 'object') {
+        for (var j = 0; j < arr[i].length; j++) {
+          res.push(arr[i][j])
+        }
+      } else {
+        res.push(arr[i])
+      }
+    }
+    return res
   }
 
 
