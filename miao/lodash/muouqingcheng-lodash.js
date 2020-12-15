@@ -170,13 +170,135 @@ var muouqingcheng = function () {
 
   function sortedIndex (arr, value) {
     for (var i = 0; i < arr.length; i++) {
-      if (arr[i] > value) {
+      if (arr[i] >= value) {
         return i
       }
     }
   }
 
+  function isArray (val) {
+    if (typeof(val) == "object" && val.length >= 0) {
+      return true
+    }
+    return false
+  }
 
+  // function isArray (val) {
+  //   return Object.prototype.toString.call(val) === '[object Array]'
+  // }
+
+  function isObject (value) {
+    if (typeof(value) == "object") {
+      return true
+    }
+    return false
+  }
+
+  function isString (value) {
+    if (typeof(value) == "string") {
+      return true
+    }
+    return false
+  }
+
+  function isFunction (value) {
+    if (typeof(value) == "function") {
+      return true
+    }
+    return false
+  }
+
+  function toArray (value) {
+    var res = []
+    if (isObject(value)) {
+      for (key in value) {
+        res.push(value[key])
+      }
+    } else if (isString(value)) {
+      for (var i = 0; i < value.length; i++) {
+        res.push(value[i])
+      }
+    }
+    return res
+  }
+
+  function max (arr) { 
+    var max = arr[0]
+    for (var i = 1; i < arr.length; i++) {
+      if (arr[i] > max) {
+        max = arr[i]
+      }
+    }
+    return max
+  }
+
+  function maxBy (arr, iteratee = identity) {
+    var max = arr[0]
+    for (var i = 1; i < arr.length; i++) {
+      if (isString(iteratee)) {
+        if (max[iteratee] < arr[i][iteratee]) {
+          max = arr[i]
+        }
+      } else if (isFunction(iteratee)) {
+        if (iteratee(max) < iteratee(arr[i])) {
+          max = arr[i]
+        }
+      }
+    }
+    return max
+  }
+
+  function min (arr) {
+    var min = arr[0]
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i] < min) {
+        min = arr[i]
+      }
+    }
+    return min
+  }
+
+  function minBy (arr, iteratee = identity) {
+    var min = arr[0]
+    for (var i = 1; i < arr.length; i++) {
+      if (isString(iteratee)) {
+        if (min[iteratee] > arr[i][iteratee]) {
+          min = arr[i]
+        }
+      } else if (isFunction(iteratee)) {
+        if (iteratee(min) > iteratee(arr[i])) {
+          min = arr[i]
+        }
+      }
+    }
+    return min
+  }
+
+  function sum (arr) {
+    var sum = 0
+    for (var i = 0; i < arr.length; i++) {
+      sum += arr[i]
+    }
+    return sum
+  }
+
+  function sumBy (arr, iteratee = identity) {
+    var sum = 0
+    for (var i = 1; i < arr.length; i++) {
+      if (isString(iteratee)) {
+        sum += arr[i][iteratee]
+      } else if (isFunction(iteratee)) {
+        return iteratee (arr)
+      }
+    }
+    return sum
+  }
+
+  function curry (func, ...fixedArgs) {
+    return function (...args) {
+      return func (...fixedArgs, ...args)
+    }
+  }
 
 
   return {
@@ -198,6 +320,17 @@ var muouqingcheng = function () {
     initial,
     reverse,
     sortedIndex,
-    
+    isArray,
+    isObject,
+    isString,
+    isFunction,
+    toArray,
+    max,
+    maxBy,
+    min,
+    minBy,
+    sum,
+    sumBy,
+    curry,
   }
 }()
