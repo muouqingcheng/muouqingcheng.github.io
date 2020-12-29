@@ -68,22 +68,6 @@ var muouqingcheng = function () {
     return val
   }
 
-  function findIndex (arr, predicate = identity, fromIndex = 0) {
-    if (typeof(predicate) == 'function') {
-      pre = predicate (arr[i])
-    } else if (typeof(predicate) == 'object') {
-      pre = function () {
-        arr[i] === predicate
-      }
-    } else if (typeof(predicate) == 'object')
-    for (var i = fromIndex; i < arr.length; i++) {
-      if (pre) {
-        return i
-      }
-    }
-    return -1
-  }
-
   function flatten (arr) {
     var res = []
     for (var i = 0; i < arr.length; i++) {
@@ -236,6 +220,12 @@ var muouqingcheng = function () {
   }
 
   function isObject (value) {
+    if (value == null) {
+      return false
+    }
+    if (isFunction(value)) {
+      return true
+    }
     if (typeof(value) == "object") {
       return true
     }
@@ -332,7 +322,7 @@ var muouqingcheng = function () {
 
   function sumBy (arr, predicate = identity) {
     var sum = 0
-    for (var i = 1; i < arr.length; i++) {
+    for (var i = 0; i < arr.length; i++) {
       if (isString(predicate)) {
         sum += arr[i][predicate]
       } else if (isFunction(predicate)) {
@@ -350,11 +340,21 @@ var muouqingcheng = function () {
   //   return sum
   // }
 
-  function curry (func, ...fixedArgs) {
+  // function curry (func, ...fixedArgs) {
+  //   return function (...args) {
+  //     return func (...fixedArgs, ...args)
+  //   }
+  // }
+
+  function curry (f, length = f.length) {
     return function (...args) {
-      return func (...fixedArgs, ...args)
+        if (args.length < length) {
+            return curry(f.bind(null, ...args), length - args.length)
+        } else {
+            return f(...args)
+        }
     }
-  }
+}
 
   function concat (...values) {
     var result = []
@@ -503,6 +503,16 @@ var muouqingcheng = function () {
     return arr.filter(predicate)
   }
 
+  function findIndex (arr, predicate = identity, fromIndex = 0) {
+    predicate = iteratee(predicate)
+    return arr.reduce((acc, val, ind) => {
+      if (this[ind] == predicate(val)) {
+        return ind + fromIndex
+      }
+      return -1
+    }, arr[fromIndex])
+  }
+
 
   return {
     chunk,
@@ -548,5 +558,6 @@ var muouqingcheng = function () {
     matchesProperty,
     isMatchWith,
     dropRightWhile,
+    findIndex,
   }
 }()
