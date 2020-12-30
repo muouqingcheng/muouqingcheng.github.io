@@ -64,24 +64,8 @@ var muouqingcheng = function () {
     return arr
   }
 
-  function identity (value) {
-    return arguments[0]
-  }
-
-  function findIndex (arr, predicate = identity, fromIndex = 0) {
-    if (typeof(predicate) == 'function') {
-      pre = predicate (arr[i])
-    } else if (typeof(predicate) == 'object') {
-      pre = function () {
-        arr[i] === predicate
-      }
-    } else if (typeof(predicate) == 'object')
-    for (var i = fromIndex; i < arr.length; i++) {
-      if (pre) {
-        return i
-      }
-    }
-    return -1
+  function identity (val) {
+    return val
   }
 
   function flatten (arr) {
@@ -98,6 +82,18 @@ var muouqingcheng = function () {
     return res
   }
 
+  // function flatten (arrays) {
+  //   return [].concat(...arrays)
+  // }
+
+  // ^^^上面的函数等价于：
+  // function flatten (arrays) {
+  //   return [].concat.apply([], arrays)
+  // }
+
+  // ^^^上面的函数等价于：
+  // flatten = [].concat.apply.bind([].concat, [])
+
   function flattenDeep (arr) {
     var res = []
     function fD (arr) {
@@ -112,6 +108,18 @@ var muouqingcheng = function () {
     fD (arr)
     return res
   }
+
+  // function flattenDeep (arrays) {
+  //   var result = []
+  //   for (var i = 0; i < arrays.length; i++) {
+  //     if (Array.isArray(arrays[i])) {
+  //       result.push(...flattenDeep(arrays[i]))
+  //     } else {
+  //       result.push(arrays[i])
+  //     }
+  //   }
+  //   return result
+  // }
 
   function flattenDepth (arr, depth = 1) {
     var res = []
@@ -129,6 +137,30 @@ var muouqingcheng = function () {
     fD (arr, dep)
     return res
   }
+
+  // function flattenDepth (arrays, depth = 1) {
+  //   if (depth == 0) {
+  //     return arrays.slice()
+  //   }
+
+  //   var result = []
+  //   for (var i = 0; i < arrays.length; i++) {
+  //     if (Array.isArray(arrays[i])) {
+  //       result.push(...flattenDepth(arrays[i], depth - 1))
+  //     } else {
+  //       result.push(arrays[i])
+  //     }
+  //   }
+  //   return result
+  // }
+
+  // function flatten (arrays) {
+  //   return flattenDepth(arrays, 1)
+  // }
+
+  // function flattenDeep (arrays) {
+  //   return flattenDepth(arrays, Infinity)
+  // }
 
   function fromPairs (pairs) {
     var res = {}
@@ -176,18 +208,24 @@ var muouqingcheng = function () {
     }
   }
 
-  function isArray (val) {
-    if (typeof(val) == "object" && val.length >= 0) {
-      return true
-    }
-    return false
-  }
-
   // function isArray (val) {
-  //   return Object.prototype.toString.call(val) === '[object Array]'
+  //   if (typeof(val) == "object" && val.length >= 0) {
+  //     return true
+  //   }
+  //   return false
   // }
 
+  function isArray (val) {
+    return Object.prototype.toString.call(val) === '[object Array]'
+  }
+
   function isObject (value) {
+    if (value == null) {
+      return false
+    }
+    if (isFunction(value)) {
+      return true
+    }
     if (typeof(value) == "object") {
       return true
     }
@@ -282,22 +320,197 @@ var muouqingcheng = function () {
     return sum
   }
 
-  function sumBy (arr, iteratee = identity) {
+  function sumBy (arr, predicate = identity) {
     var sum = 0
-    for (var i = 1; i < arr.length; i++) {
-      if (isString(iteratee)) {
-        sum += arr[i][iteratee]
-      } else if (isFunction(iteratee)) {
-        return iteratee (arr)
+    for (var i = 0; i < arr.length; i++) {
+      if (isString(predicate)) {
+        sum += arr[i][predicate]
+      } else if (isFunction(predicate)) {
+        return sum += predicate (arr)
       }
     }
     return sum
   }
 
-  function curry (func, ...fixedArgs) {
+  // function sumBy (arr, predicate = identity) {
+  //   var sum = 0
+  //   for (var i = 0; i < arr.length; i++) {
+  //     sum += predicate(arr[i], i, arr)
+  //   }
+  //   return sum
+  // }
+
+  // function curry (func, ...fixedArgs) {
+  //   return function (...args) {
+  //     return func (...fixedArgs, ...args)
+  //   }
+  // }
+
+  function curry (f, length = f.length) {
     return function (...args) {
-      return func (...fixedArgs, ...args)
+        if (args.length < length) {
+            return curry(f.bind(null, ...args), length - args.length)
+        } else {
+            return f(...args)
+        }
     }
+}
+
+  function concat (...values) {
+    var result = []
+    for (var i = 0; i < values.length; i++) {
+      if (Array.isArray(values[i])) {
+        values[i].forEach(it => {
+          result.push(it)
+        })
+      } else {
+        result.push(values[i])
+      }
+    }
+    return result
+  }
+
+  function groupBy (array, predicate) {
+    var result = []
+    for (var i = 0; i < array.length; i++) {
+      var key = predicate(array[i], i, array) 
+      if (!Array.isArray(result[key])) {
+        result[key] = []
+      }
+      result[key].push(array[i])
+    }
+    return result
+  }
+
+  function mapValues (obj, predicate = identity) {
+    var result = {}
+    for (var key in obj) {
+      var val = obj[key]
+      result[key] = predicate(val, key, obj)
+    }
+    return result
+  }
+
+  function mapKeys (obj, predicate = identity) {
+    var result = {}
+    for (var key in obj) {
+      var val = obj[key]
+      result[predicate(val, key, obj)] = val
+    }
+    return result
+  }
+
+  function get (obj, path, defaultValue) {
+    if (isString(path)) {
+      var path = toPath(path)
+    } 
+    for (var key of path) {
+      if (key in Object(obj)) {
+        obj = obj[key]
+      } else {
+        return defaultValue
+      }
+    }
+    return obj
+  }
+
+  function property (path) {
+    return function (obj) {
+      return get(obj, path)
+    }
+  }
+
+  function toPath (val) {
+    return val.match(/\w+/g)
+  }
+
+  function isMatch (obj, src) {
+    for (var key in src) {
+      if (src[key] && typeof(src[key]) === 'object') {
+        if (!isMatch(obj[key], src[key])) {
+          return false
+        }
+      } else {
+        if (obj[key] !== src[key]) {
+          return false
+        }
+      }
+    }
+    return true
+  }
+
+  function isMatchWith (obj, src, customizer) {
+    for (var key in src) {
+      if (src[key] && typeof(src[key]) === 'object') {
+        if (!isMatch(obj[key], src[key])) {
+          return false
+        }
+      } else {
+        if (!customizer(obj[key], src[key], key, obj, src)) {
+          return false
+        }
+      }
+    }
+    return true
+  }
+
+  function matches (src) {
+    return function (obj) {
+      return isMatch(obj, src)
+    }
+  }
+
+  function bind (f, thisArg, ...partials) {
+    return function (...args) {
+      var copy = partials.slice()
+      for (var i = 0; i < copy.length; i++) {
+        if (copy[i] === _) {
+          copy[i] = args.shift()
+        }
+      }
+      return f.call(thisArg, ...copy, ...args)
+    }
+  }
+
+  function matchesProperty (path, srcValue) {
+    var path = toPath(path)
+    return function (obj) {
+      var val = get(obj, path)
+      if (val !== srcValue) {
+        return false
+      }
+      return true
+    }
+  }
+
+  function iteratee (predicate) {
+    if (isFunction(predicate)) {
+      return predicate
+    }
+    if (isString(predicate)) {
+      return property(predicate)
+    }
+    if (Array.isArray(predicate)) {
+      return matchesProperty(...predicate)
+    }
+    if (isObject(predicate)) {
+      return matches(predicate)
+    }
+  } 
+
+  function dropRightWhile (arr, predicate = identity) {
+    predicate = iteratee(predicate)
+    return arr.filter(predicate)
+  }
+
+  function findIndex (arr, predicate = identity, fromIndex = 0) {
+    predicate = iteratee(predicate)
+    return arr.reduce((acc, val, ind) => {
+      if (this[ind] == predicate(val)) {
+        return ind + fromIndex
+      }
+      return -1
+    }, arr[fromIndex])
   }
 
 
@@ -332,5 +545,19 @@ var muouqingcheng = function () {
     sum,
     sumBy,
     curry,
+    concat,
+    groupBy,
+    mapValues,
+    mapKeys,
+    get,
+    property,
+    toPath,
+    isMatch,
+    matches,
+    bind,
+    matchesProperty,
+    isMatchWith,
+    dropRightWhile,
+    findIndex,
   }
 }()
