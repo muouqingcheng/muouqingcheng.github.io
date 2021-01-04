@@ -325,8 +325,9 @@ var muouqingcheng = function () {
     for (var i = 0; i < arr.length; i++) {
       if (isString(predicate)) {
         sum += arr[i][predicate]
-      } else if (isFunction(predicate)) {
-        return sum += predicate (arr)
+      }
+      if (isFunction(predicate)) {
+        sum += predicate(arr[i])
       }
     }
     return sum
@@ -370,23 +371,16 @@ var muouqingcheng = function () {
     return result
   }
 
-  function groupBy (array, predicate) {
-    var result = []
-    for (var i = 0; i < array.length; i++) {
-      var key = predicate(array[i], i, array) 
-      if (!Array.isArray(result[key])) {
-        result[key] = []
-      }
-      result[key].push(array[i])
-    }
-    return result
-  }
-
   function mapValues (obj, predicate = identity) {
     var result = {}
     for (var key in obj) {
       var val = obj[key]
-      result[key] = predicate(val, key, obj)
+      if (isFunction(predicate)) {
+        result[key] = predicate(val, key, obj)
+      }
+      if (isString(predicate)) {
+        result[key] = get(val, predicate)
+      }
     }
     return result
   }
@@ -499,18 +493,84 @@ var muouqingcheng = function () {
   } 
 
   function dropRightWhile (arr, predicate = identity) {
-    predicate = iteratee(predicate)
-    return arr.filter(predicate)
+    if (isString(predicate)) {
+      return arr
+    } else {
+      predicate = iteratee(predicate)
+    }
+    var res = []
+    for (var i = 0; i < arr.length; i++) {
+      var val = arr[i]
+      if (!predicate(val)) {
+        res.push(val)
+      }
+    }
+    return res 
+  }
+
+  function dropWhile (arr, predicate = identity) {
+    if (isString(predicate)) {
+      return arr
+    } else {
+      predicate = iteratee(predicate)
+    }
+    var res = []
+    for (var i = 0; i < arr.length; i++) {
+      var val = arr[i]
+      if (!predicate(val)) {
+        res.push(val)
+      }
+    }
+    return res 
   }
 
   function findIndex (arr, predicate = identity, fromIndex = 0) {
     predicate = iteratee(predicate)
-    return arr.reduce((acc, val, ind) => {
-      if (this[ind] == predicate(val)) {
-        return ind + fromIndex
+    for (var i = fromIndex; i < arr.length; i++) {
+      var val = arr[i]
+      if (predicate(val)) {
+        return i
       }
-      return -1
-    }, arr[fromIndex])
+    }
+    return -1
+  }
+
+  function findLastIndex (arr, predicate = identity, fromIndex = arr.length - 1) {
+    predicate = iteratee(predicate)
+    for (var i = fromIndex; i >= 0; i--) {
+      var val = arr[i]
+      if (predicate(val)) {
+        return i
+      }
+    }
+    return -1
+  }
+
+  function groupBy (arr, predicate) {
+    predicate = iteratee(predicate)
+    var res = {}
+    for (var i = 0; i < arr.length; i++) {
+      var val = arr[i]
+      var key = predicate(val)
+      if (key in res) {
+        res[key].push(val)
+      } else {
+        res[key] = []
+        res[key].push(val)
+      }
+    }
+    return res 
+  }
+
+  function difference (arr, val) {
+    var res = []
+    for (var i = 0; i < arr.length; i++) {
+      var a = arr[i]
+      if (!val.includes(a)) {
+        res.push(a)
+      }
+    }
+    return res
   }
 
 
@@ -558,6 +618,9 @@ var muouqingcheng = function () {
     matchesProperty,
     isMatchWith,
     dropRightWhile,
+    dropWhile,
     findIndex,
+    findLastIndex,
+    difference,
   }
 }()
