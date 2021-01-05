@@ -511,9 +511,8 @@ var muouqingcheng = function () {
   function dropWhile (arr, predicate = identity) {
     if (isString(predicate)) {
       return arr
-    } else {
-      predicate = iteratee(predicate)
     }
+    predicate = iteratee(predicate)
     var res = []
     for (var i = 0; i < arr.length; i++) {
       var val = arr[i]
@@ -598,12 +597,23 @@ var muouqingcheng = function () {
     return arr.reduce(  (acc, val) => acc.filter( it => val.includes(it) )  )
   }
 
+  // function pull (arr, ...val) {
+  //   var res = arr
+  //   arr.filter((it, idex) => {
+  //     if (val.includes(it)) {
+  //       delete res[idex]
+  //     }
+  //   })
+  //   return res 
+  // }
+
   function pull (arr, ...val) {
-    return arr.filter((it, idex) => {
+    arr.filter((it, idex) => {
       if (val.includes(it)) {
         delete arr[idex]
       }
     })
+    return arr
   }
 
   function union (...arr) {
