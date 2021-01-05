@@ -71,7 +71,7 @@ var muouqingcheng = function () {
   function flatten (arr) {
     var res = []
     for (var i = 0; i < arr.length; i++) {
-      if (typeof(arr[i]) == 'object') {
+      if (Array.isArray(arr[i])) {
         for (var j = 0; j < arr[i].length; j++) {
           res.push(arr[i][j])
         }
@@ -98,7 +98,7 @@ var muouqingcheng = function () {
     var res = []
     function fD (arr) {
       for (var i = 0; i < arr.length; i++) {
-        if (typeof(arr[i]) == 'object') {
+        if (Array.isArray(arr[i])) {
           fD (arr[i])
         } else {
           res.push(arr[i])
@@ -127,7 +127,7 @@ var muouqingcheng = function () {
     function fD (arr, d = 1) {
       d--
       for (var i = 0; i < arr.length; i++) {
-        if (typeof(arr[i]) == 'object' && d !== -1) {
+        if (Array.isArray(arr[i]) && d !== -1) {
           fD (arr[i], d)
         } else {
           res.push(arr[i])
@@ -562,8 +562,9 @@ var muouqingcheng = function () {
     return res 
   }
 
-  function difference (arr, val) {
+  function difference (arr, ...val) {
     var res = []
+    val = flattenDeep(val)
     for (var i = 0; i < arr.length; i++) {
       var a = arr[i]
       if (!val.includes(a)) {
@@ -572,6 +573,44 @@ var muouqingcheng = function () {
     }
     return res
   }
+
+  function differenceBy (arr, ...val) {
+    var predicate = val[val.length - 1]
+    if (!isArray(predicate)) {
+      val.pop()
+      predicate = iteratee(predicate)
+    } else {
+      predicate = identity
+    }
+    var res = []
+    var arrMap = arr.map(predicate)
+    var valMap = flattenDeep(val).map(predicate)
+    var diff = difference(arrMap, valMap)
+    for (var i = 0; i < diff.length; i++) {
+      var a = diff[i]
+      var b = arrMap.indexOf(a)
+      res.push(arr[b])
+    }
+    return res
+  }
+
+  function intersection (...arr) {
+    return arr.reduce(  (acc, val) => acc.filter( it => val.includes(it) )  )
+  }
+
+  function pull (arr, ...val) {
+    return arr.filter((it, idex) => {
+      if (val.includes(it)) {
+        delete arr[idex]
+      }
+    })
+  }
+
+  function union (...arr) {
+    var arr = flattenDeep(arr)
+    return new Set(arr)
+  }
+  
 
 
   return {
@@ -622,5 +661,9 @@ var muouqingcheng = function () {
     findIndex,
     findLastIndex,
     difference,
+    differenceBy,
+    intersection,
+    pull,
+    union,
   }
 }()
