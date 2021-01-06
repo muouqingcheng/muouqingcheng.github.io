@@ -598,6 +598,17 @@ var muouqingcheng = function () {
   }
 
   // function pull (arr, ...val) {
+  //   var result = arr.filter((it, idex) => {
+  //     if (val.includes(it)) {
+  //       return false
+  //     } else {
+  //       return true
+  //     }
+  //   })
+  //   return result
+  // }
+  
+  // function pull (arr, ...val) {
   //   var res = arr
   //   arr.filter((it, idex) => {
   //     if (val.includes(it)) {
@@ -606,9 +617,18 @@ var muouqingcheng = function () {
   //   })
   //   return res 
   // }
+  
+  // function pull (arr, ...val) {
+  //   arr.filter((it, idex) => {
+  //     if (val.includes(it)) {
+  //       delete arr[idex]
+  //     }
+  //   })
+  //   return arr 
+  // }
 
   function pull (arr, ...val) {
-    arr.filter((it, idex) => {
+    arr.forEach((it, idex) => {
       if (val.includes(it)) {
         delete arr[idex]
       }
@@ -618,7 +638,7 @@ var muouqingcheng = function () {
 
   function union (...arr) {
     var arr = flattenDeep(arr)
-    return new Set(arr)
+    return Array.from(new Set(arr))
   }
   
 
