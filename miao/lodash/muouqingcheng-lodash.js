@@ -498,29 +498,26 @@ var muouqingcheng = function () {
     } else {
       predicate = iteratee(predicate)
     }
-    var res = []
-    for (var i = 0; i < arr.length; i++) {
+    for (var i = arr.length - 1; i >= 0; i--) {
       var val = arr[i]
       if (!predicate(val)) {
-        res.push(val)
+        return arr.slice(0, i + 1)
       }
     }
-    return res 
   }
 
   function dropWhile (arr, predicate = identity) {
     if (isString(predicate)) {
       return arr
+    } else {
+      predicate = iteratee(predicate)
     }
-    predicate = iteratee(predicate)
-    var res = []
     for (var i = 0; i < arr.length; i++) {
       var val = arr[i]
       if (!predicate(val)) {
-        res.push(val)
+        return arr.slice(i)
       }
     }
-    return res 
   }
 
   function findIndex (arr, predicate = identity, fromIndex = 0) {
@@ -597,43 +594,14 @@ var muouqingcheng = function () {
     return arr.reduce(  (acc, val) => acc.filter( it => val.includes(it) )  )
   }
 
-  // function pull (arr, ...val) {
-  //   var result = arr.filter((it, idex) => {
-  //     if (val.includes(it)) {
-  //       return false
-  //     } else {
-  //       return true
-  //     }
-  //   })
-  //   return result
-  // }
-  
-  // function pull (arr, ...val) {
-  //   var res = arr
-  //   arr.filter((it, idex) => {
-  //     if (val.includes(it)) {
-  //       delete res[idex]
-  //     }
-  //   })
-  //   return res 
-  // }
-  
-  // function pull (arr, ...val) {
-  //   arr.filter((it, idex) => {
-  //     if (val.includes(it)) {
-  //       delete arr[idex]
-  //     }
-  //   })
-  //   return arr 
-  // }
-
   function pull (arr, ...val) {
-    arr.forEach((it, idex) => {
-      if (val.includes(it)) {
-        delete arr[idex]
+    var res = []
+    arr.forEach(it => {
+      if (!val.includes(it)) {
+        res.push(it)
       }
     })
-    return arr
+    return res
   }
 
   function union (...arr) {
